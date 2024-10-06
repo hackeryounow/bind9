@@ -1,0 +1,2 @@
+.       3600000  IN  NS      ns1.root.local.
+ns1.root.local.  3600000  IN  A   $ROOT_SERVER_IP

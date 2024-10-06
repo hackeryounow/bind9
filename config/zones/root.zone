@@ -1,0 +1,15 @@
+$TTL 86400
+@   IN  SOA  ns1.root.local. admin.root.example. (
+            2023100101   ; Serial
+            86400        ; Refresh
+            7200         ; Retry
+            3600000      ; Expire
+            86400 )      ; Minimum TTL
+
+@     IN  NS  ns1.root.local.
+
+ns1.root.local.    IN  A    ${HOST_IP}
+
+com.        IN  NS  ns1.tld.com.
+
+ns1.tld.com.   IN  A  ${TOP_LEVEL_SERVER_IP}
