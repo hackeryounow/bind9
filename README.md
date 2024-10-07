@@ -1,7 +1,8 @@
 ## bind9
 
-[ X ] The Bind v9.20.2 is supported (`Version 1.0.0`)
-[ X ] All versions of Bind are supported (`Version 1.0.1`)
+- ✔️ The Bind v9.20.2 is supported (`Version 1.0.0`)
+
+- ✔️ All versions of Bind are supported (`Version 1.0.1`)
 
 
 ### How to use
