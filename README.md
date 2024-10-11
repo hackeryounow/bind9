@@ -29,4 +29,4 @@
 
     `docker-compose -f docker-compose.monitoring.yaml -p monitoring up -d`
 
-7. A Granfana dashboard `json` file is located in `dashboard/DNS Monitoring.json`
+Note that, a Granfana dashboard `json` file is located in `dashboard/DNS Monitoring.json`
