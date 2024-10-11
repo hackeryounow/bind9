@@ -29,12 +29,13 @@ services:
         ipv4_address: ${TOP_LEVEL_SERVER_IP}
   authoritative-nameserver1a:
     container_name: authoritative1a
+    labels:
+      nameserver_group: "authoritative"
     image: bind9/bind9:v${BIND9_VERSION}
     command: bash -c "sh entrypoint.sh  && named -g -c /etc/bind/named.conf "
     volumes:
       - ./config/authoritative_named.conf:/etc/bind/named.conf.template
       - ./config/zones/com.tutu.zone:/etc/bind/com.tutu.zone.template
-
     environment:
       - HOST_IP=${AUTHORITATIVE_SERVER1a_IP}
     networks:
@@ -42,20 +43,25 @@ services:
         ipv4_address: ${AUTHORITATIVE_SERVER1a_IP}
   resolver1:
     container_name: resolver1
+    labels:
+      nameserver_group: "resolver"
     image: bind9/bind9:v${BIND9_VERSION}
     command: bash -c "sh entrypoint.sh  && named -g -c /etc/bind/named.conf"
     volumes:
       - ./config/resolver.conf:/etc/bind/named.conf.template
       - ./config/zones/root.hints:/etc/bind/root.hints.template
-
     environment:
       - ROOT_SERVER_IP=${ROOT_SERVER_IP}
     networks:
       nameserver_bridge:
         ipv4_address: ${RESOLVER_SERVER1_IP}
+
 networks:
   nameserver_bridge:
     driver: bridge
     ipam:
       config:
         - subnet: 172.18.0.0/16
+
+volumes:
+  prom_data:
