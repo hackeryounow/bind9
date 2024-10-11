@@ -10,3 +10,5 @@ $TTL 86400
 ns1.tutu.com. IN  A  ${HOST_IP}
 
 www.tutu.com.  IN  A  192.168.1.22
+
+q.w.e.r.t.y.u.i.o.a.s.d.f.g.h.j.k.kl.gh.fg.f.d.tutu.com. IN A 192.168.56.2

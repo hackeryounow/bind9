@@ -4,7 +4,7 @@
 
 - ✔️ All versions of Bind are supported (`Version 1.0.1`)
 
-- ✔️ Nameserver monitor are supported (`Version 1.0.2`)
+- ✔️ Nameserver monitors are supported (`Version 1.0.2`)
 
 
 ### How to use
