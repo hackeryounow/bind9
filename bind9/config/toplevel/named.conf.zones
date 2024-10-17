@@ -1,0 +1,4 @@
+zone "com" IN {
+    type master;
+    file "/etc/bind/db.com";
+};

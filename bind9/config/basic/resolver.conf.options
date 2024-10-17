@@ -1,0 +1,9 @@
+options {
+    directory "/var/named";
+    recursion yes;
+    allow-recursion { any; }; 
+    listen-on { any; };
+    listen-on-v6 { any; };
+    dnssec-validation no;
+    forwarders {};
+};

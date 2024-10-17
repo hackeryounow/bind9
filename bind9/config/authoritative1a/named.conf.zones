@@ -1,0 +1,4 @@
+zone "tutu.com" IN {
+    type master;
+    file "/etc/bind/db.tutu.com";
+};

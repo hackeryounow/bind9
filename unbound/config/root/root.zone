@@ -1,0 +1,14 @@
+$TTL 60           ; TTL for RPZ rules (in seconds)
+@       SOA  ns1.root-server.com. admin.myroot. (
+                2024010101 ; Serial number
+                60         ; Refresh (in seconds)
+                60         ; Retry (in seconds)
+                1814400    ; Expire (in seconds)
+                60 )       ; Minimum TTL (in seconds)
+        NS      ns1.root-server.com.
+
+
+ns1.root-server.com.    A       172.19.0.2
+
+com.                    NS      ns1.tld-server.com.
+ns1.tld-server.com.     A       172.19.0.3

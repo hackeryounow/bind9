@@ -1,0 +1,61 @@
+version: '3.8'
+
+networks:
+  nameserver_bridge:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16
+services:
+  ns-root:
+    container_name: root
+    image: unbound:v1.21.1
+    command: bash -c "unbound -d -vv -c /etc/unbound/unbound.conf"
+    volumes:
+      - ./config/root/root.unbound:/etc/unbound/unbound.conf
+    # environment:
+    #   - HOST_IP=${ROOT_NAMESERVER_IP}
+    #   - AUTHORITATIVE_SERVER1a_IP=${AUTHORITATIVE_SERVER1a_IP}
+    #   - AUTHORITATIVE_SERVER2a_IP=${AUTHORITATIVE_SERVER2a_IP}
+    networks:
+      nameserver_bridge:
+        ipv4_address: 172.19.0.2
+  ns-toplevel:
+    container_name: toplevel
+    image: unbound:v1.21.1
+    command: bash -c "unbound -d -vv -c /etc/unbound/unbound.conf"
+    volumes:
+      - ./config/toplevel/toplevel.unbound:/etc/unbound/unbound.conf
+    # environment:
+    #   - HOST_IP=${ROOT_NAMESERVER_IP}
+    #   - AUTHORITATIVE_SERVER1a_IP=${AUTHORITATIVE_SERVER1a_IP}
+    #   - AUTHORITATIVE_SERVER2a_IP=${AUTHORITATIVE_SERVER2a_IP}
+    networks:
+      nameserver_bridge:
+        ipv4_address: 172.19.0.3
+  ns-authoritative:
+    container_name: authoritative
+    image: unbound:v1.21.1
+    command: bash -c "unbound -d -vv -c /etc/unbound/unbound.conf"
+    volumes:
+      - ./config/authoritative/unbound.conf:/etc/unbound/unbound.conf
+    # environment:
+    #   - HOST_IP=${ROOT_NAMESERVER_IP}
+    #   - AUTHORITATIVE_SERVER1a_IP=${AUTHORITATIVE_SERVER1a_IP}
+    #   - AUTHORITATIVE_SERVER2a_IP=${AUTHORITATIVE_SERVER2a_IP}
+    networks:
+      nameserver_bridge:
+        ipv4_address: 172.19.0.4
+  ns-resolver:
+    container_name: resolver
+    image: unbound:v1.21.1
+    command: bash -c "unbound -d -vv -c /etc/unbound/unbound.conf"
+    volumes:
+      - ./config/resolver/root.hints:/etc/unbound/root.hints
+    # environment:
+    #   - HOST_IP=${ROOT_NAMESERVER_IP}
+    #   - AUTHORITATIVE_SERVER1a_IP=${AUTHORITATIVE_SERVER1a_IP}
+    #   - AUTHORITATIVE_SERVER2a_IP=${AUTHORITATIVE_SERVER2a_IP}
+    networks:
+      nameserver_bridge:
+        ipv4_address: 172.19.0.5

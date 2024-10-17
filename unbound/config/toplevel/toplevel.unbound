@@ -1,0 +1,18 @@
+server:
+    interface: 0.0.0.0
+    interface: ::0
+    access-control: 0.0.0.0/0 allow
+    access-control: ::0/0 allow
+    verbosity: 1
+	do-ip6: yes
+    do-ip4: yes
+	module-config: "iterator"  
+
+    local-zone: "com." static
+    local-data: "com. 86400 IN SOA ns1.tld-server.com. admin.example.com. (2024010101 7200 3600 1209600 86400)"
+
+    local-data: "com. 86400 IN NS ns1.tld-server.com."
+    local-data: "ns1.tld-server.com. 86400 IN A 172.19.0.3"
+    
+    local-data: "example.com. 86400 IN NS ns1.example-server.com."
+    local-data: "ns1.example-server.com. 86400 IN A 172.19.0.4"
